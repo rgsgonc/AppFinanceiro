@@ -21,7 +21,7 @@ public class CartaoController {
 	public String cadastrarCartao(Cartao cartao) {
 		CartaoService cs = new CartaoService();
 		cs.cadastrarCartao(cartao);
-		return "Cartão salvo com sucesso";
+		return "Cartão salvo com sucesso!";
 	}
 	
 	@GET
