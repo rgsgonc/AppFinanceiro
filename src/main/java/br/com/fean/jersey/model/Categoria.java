@@ -4,13 +4,23 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Categoria {
+	private int id;
 	private String nomeCategoria;
 
 	public Categoria(){}
-	
-	public Categoria(String nomeCategoria) {
+
+	public Categoria(int id, String nomeCategoria) {
 		super();
+		this.id = id;
 		this.nomeCategoria = nomeCategoria;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNomeCategoria() {
@@ -20,6 +30,7 @@ public class Categoria {
 	public void setNomeCategoria(String nomeCategoria) {
 		this.nomeCategoria = nomeCategoria;
 	}
+	
 	
 	
 }

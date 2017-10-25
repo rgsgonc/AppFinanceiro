@@ -10,7 +10,6 @@ public class Usuario {
 	private String email;
 	private String telefone;
 	private String senha;
-	private String confirmaSenha;
 	
 	public int getId() {
 		return id;
@@ -60,32 +59,22 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public String getConfirmaSenha() {
-		return confirmaSenha;
-	}
-
-	public void setConfirmaSenha(String confirmaSenha) {
-		this.confirmaSenha = confirmaSenha;
-	}
-
 	public Usuario(){}
 	
 	
 	public Usuario(int id, String nome, String endereco, String email, String telefone, String senha,
 			String confirmaSenha) {
-		super();
 		this.id = id;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.email = email;
 		this.telefone = telefone;
 		this.senha = senha;
-		this.confirmaSenha = confirmaSenha;
 	}
 
 	@Override
 	public String toString() {
-		return "Nome - "+this.nome+",idade - "+this.senha;
+		return "Nome - "+this.nome+",senha - "+this.senha;
 		
 	}
 	
