@@ -46,7 +46,6 @@
 |DELETE|Cadastro de Usuário|curl -X DELETE http://localhost:8080/GerenciadorFinanceiro/rest/usuario/delete/1| ✔ | ✔
 
 # TOMCAT RAFAEL
-# TOMCAT RAFAEL
 ## LOGIN
 |Método |Tela| CURL | Testado | Tela Android
 |------ |------ | ------ | ------ | ------ |
