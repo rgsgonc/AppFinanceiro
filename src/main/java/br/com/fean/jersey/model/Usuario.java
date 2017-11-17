@@ -62,8 +62,7 @@ public class Usuario {
 	public Usuario(){}
 	
 	
-	public Usuario(int id, String nome, String endereco, String email, String telefone, String senha,
-			String confirmaSenha) {
+	public Usuario(int id, String nome, String endereco, String email, String telefone, String senha) {
 		this.id = id;
 		this.nome = nome;
 		this.endereco = endereco;

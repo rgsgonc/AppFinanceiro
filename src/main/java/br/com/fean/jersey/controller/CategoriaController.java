@@ -24,11 +24,11 @@ public class CategoriaController {
 	@Path("/cadastro")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String cadastrarCategoria(Categoria categoria){
+	public Categoria cadastrarCategoria(Categoria categoria){
 		if(categoriaService.cadastrarCategoria(categoria)){
-			return "Categoria cadastrada!";
+			return categoria;
 		}
-		return "Categoria já cadastrada!";
+		return categoria;
 	}
 	
 	@GET
