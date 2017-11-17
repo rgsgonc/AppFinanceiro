@@ -1,70 +1,59 @@
 package br.com.fean.jersey.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import br.com.fean.jersey.dao.UsuarioDAO;
 import br.com.fean.jersey.model.Usuario;
 
 public class UsuarioService {
-	private static List<Usuario> usuarios = new ArrayList<Usuario>();
-	
-	public static List<Usuario> getTodosUsuarios() {
-		if(usuarios == null) {
-			return new ArrayList<Usuario>();
-		}
-		return usuarios;
+	public UsuarioDAO usuarioDAO() {
+		return usuarioDAO;
 	}
 	
-	public boolean cadastrarUsuario(Usuario usuarioInserir) {
-		if(usuarios != null && !usuarios.isEmpty()) {
-			for (Usuario usuario : usuarios) {
-				if(usuarioInserir.getEmail().equals(usuario.getEmail())) {
-					return false;
-				}
-			}
-			defineIdUsuario(usuarioInserir);
-		}else{
-			usuarioInserir.setId(1);
-		}
+	private static UsuarioDAO usuarioDAO;
+	
+	public UsuarioService (){
+		usuarioDAO = new UsuarioDAO();
+	}
+	
+	public void persiste(Usuario entity) {
+		usuarioDAO.openCurrentSessionwithTransaction();
+		usuarioDAO.persist(entity);
+		usuarioDAO.closeCurrentSessionwithTransaction();
+	}
+
+	public Boolean merge (Usuario categoriaAlterada) {
+		usuarioDAO.openCurrentSessionwithTransaction();
+		usuarioDAO.update(categoriaAlterada);
+		usuarioDAO.closeCurrentSessionwithTransaction();
 		
-		usuarios.add(usuarioInserir);
 		return true;
 	}
 	
-	private void defineIdUsuario(Usuario usuarioInserir) {
-		Usuario ultimoUsuario = null;
-		for (Usuario usuario : usuarios) {
-			ultimoUsuario = usuario;
-		}
-		usuarioInserir.setId(ultimoUsuario.getId()+1);
-	}
-	
-	
-	public Usuario buscarUsuarioId(Integer idUser) {
-		for(Usuario user : usuarios){
-			if(user.getId() == idUser){
-				return user;
-			}
-		}
-		return new Usuario();
+	public Usuario findById(Integer id) {
+		usuarioDAO.abrirSessaoAtual();
+		Usuario categoria = usuarioDAO.findById(id);
+		usuarioDAO.encerrarSessaoAtual();
+		return categoria;
 	}
 
-	public boolean alterarUsuario(Usuario usuarioUpdate) {
-		for (Usuario usuario : usuarios) {
-			if(usuario.getId() == usuarioUpdate.getId()) {
-				usuario.setNome(usuarioUpdate.getNome());
-				usuario.setEndereco(usuarioUpdate.getEndereco());
-				usuario.setEmail(usuarioUpdate.getEmail());
-				usuario.setTelefone(usuarioUpdate.getTelefone());
-				usuario.setSenha(usuarioUpdate.getSenha());
-				return true;
-			}
-		}
-		return false;
+	public void delete(Integer id) {
+		usuarioDAO.openCurrentSessionwithTransaction();
+		Usuario categoria = usuarioDAO.findById(id);
+		usuarioDAO.delete(categoria);
+		usuarioDAO.closeCurrentSessionwithTransaction();
 	}
-	
-	public void deletarUsuario(Integer idUser) {
-		Usuario usuario = buscarUsuarioId(idUser);
-		usuarios.remove(usuario);
+
+	public List<Usuario> findAll() {
+		usuarioDAO.abrirSessaoAtual();
+		List<Usuario> usuarios = usuarioDAO.findAll();
+		usuarioDAO.encerrarSessaoAtual();
+		return usuarios;
+	}
+
+	public void deleteAll() {
+		usuarioDAO.openCurrentSessionwithTransaction();
+		usuarioDAO.deleteAll();
+		usuarioDAO.closeCurrentSessionwithTransaction();
 	}
 }

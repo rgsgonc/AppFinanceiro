@@ -23,12 +23,9 @@ public class CategoriaController {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Categoria cadastrarCategoria(Categoria categoria){
-		
 		if(categoria != null){
 			categoriaService.persiste(categoria);
-			
 		}
-		
 		return categoria;
 	}
 	
@@ -46,9 +43,7 @@ public class CategoriaController {
 		if(categoriaService.merge(categoria)) {
 			return "Categoria alterada!";
 		}
-		
 		return "Erro ao alterar Categoria!";
-		
 	}
 	
 	@DELETE
