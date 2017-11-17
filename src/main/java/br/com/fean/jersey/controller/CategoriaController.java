@@ -1,7 +1,5 @@
 package br.com.fean.jersey.controller;
 
-import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -25,9 +23,12 @@ public class CategoriaController {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Categoria cadastrarCategoria(Categoria categoria){
-		if(categoriaService.cadastrarCategoria(categoria)){
-			return categoria;
+		
+		if(categoria != null){
+			categoriaService.persiste(categoria);
+			
 		}
+		
 		return categoria;
 	}
 	
@@ -35,14 +36,14 @@ public class CategoriaController {
 	@Path("/buscar/{idCategoria}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Categoria buscarCategoria(@PathParam("idCategoria") Integer idCategoria) {	
-		return categoriaService.buscarCategoriaId(idCategoria);
+		return categoriaService.findById(idCategoria);
 	}
 	
 	@PUT
 	@Path("/editar")
     @Consumes(MediaType.APPLICATION_JSON)
-	public String editarCategoria(Categoria Categoria) {
-		if(categoriaService.alterarCategoria(Categoria)) {
+	public String editarCategoria(Categoria categoria) {
+		if(categoriaService.merge(categoria)) {
 			return "Categoria alterada!";
 		}
 		
@@ -53,7 +54,7 @@ public class CategoriaController {
 	@DELETE
 	@Path("/delete/{idCategoria}")
 	public String deletarCategoria(@PathParam("idCategoria") Integer idCategoria) {
-		categoriaService.deletarCategoria(idCategoria);
+		categoriaService.delete(idCategoria);
 		return "Categoria excluida!";
 	}
 }
