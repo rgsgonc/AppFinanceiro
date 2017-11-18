@@ -7,18 +7,27 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import br.com.fean.jersey.model.Login;
+import br.com.fean.jersey.services.UsuarioService;
 
 @Path("/login")
 public class LoginController {
+	
+	private UsuarioService usuarioService = new UsuarioService();
+	
 	@POST
 	@Path("/autenticacao")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public boolean efetuarLogin(Login login) {
-		if (login.getUsuario().equals("rafael") && login.getSenha().equals("123456")) {
-			return true;
+		
+		boolean estaAutenticado = false;
+		
+		if(usuarioService.valideLogin(login)){
+			estaAutenticado = true;
 		} else {
-			return false;
+			estaAutenticado = false;
 		}
+		
+		return estaAutenticado;
 	}
 }

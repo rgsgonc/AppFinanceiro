@@ -95,5 +95,19 @@ public class UsuarioDAO implements GenericDAO<Usuario>{
              delete(entity);
          }
      }
+
+	public Boolean findByEmailESenha(String email, String senha) {
+		boolean existeUsuario = false; 
+		
+		Usuario usuario = (Usuario)getCurrentSession()
+				.createQuery("from Usuario where email = :pEmail and senha = :pSenha")
+				.setParameter("pEmail", email).setParameter("pSenha", senha).uniqueResult();
+		 
+		 if(usuario != null){
+			 existeUsuario =  true;
+		 }
+		 
+		 return existeUsuario;
+	}
      
 }

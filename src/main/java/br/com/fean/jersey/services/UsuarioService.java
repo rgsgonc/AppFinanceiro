@@ -3,6 +3,7 @@ package br.com.fean.jersey.services;
 import java.util.List;
 
 import br.com.fean.jersey.dao.UsuarioDAO;
+import br.com.fean.jersey.model.Login;
 import br.com.fean.jersey.model.Usuario;
 
 public class UsuarioService {
@@ -56,4 +57,23 @@ public class UsuarioService {
 		usuarioDAO.deleteAll();
 		usuarioDAO.closeCurrentSessionwithTransaction();
 	}
+	
+	public Boolean login (String email, String senha){
+		usuarioDAO.openCurrentSessionwithTransaction();
+		boolean existeUsuario = usuarioDAO.findByEmailESenha(email, senha);
+		usuarioDAO.closeCurrentSessionwithTransaction();
+		
+		return existeUsuario;
+	}
+	
+	public Boolean valideLogin(Login login){
+		boolean usuarioExiste = false;
+		
+		if(login.getUsuario() != "" && login.getSenha() != ""){
+			usuarioExiste = login(login.getUsuario(), login.getSenha());
+		}
+		
+		return usuarioExiste;
+	}
+	
 }
