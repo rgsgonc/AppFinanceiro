@@ -41,7 +41,7 @@ public class UsuarioController {
 	}
 
 	@PUT
-	@Path("/editar")
+	@Path("/update")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String editarUsuario(Usuario usuario) {
 		if (usuarioService.merge(usuario)) {

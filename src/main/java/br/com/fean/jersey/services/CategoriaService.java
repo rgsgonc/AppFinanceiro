@@ -27,7 +27,6 @@ public class CategoriaService {
 		categoriaDAO.openCurrentSessionwithTransaction();
 		categoriaDAO.update(categoriaAlterada);
 		categoriaDAO.closeCurrentSessionwithTransaction();
-		
 		return true;
 	}
 	

@@ -41,8 +41,8 @@ public class CategoriaController {
 	@PUT
 	@Path("/update")
     @Consumes(MediaType.APPLICATION_JSON)
-	public String editarCategoria(Categoria categoria) {
-		if(categoriaService.merge(categoria)) {
+	public String editarCategoria(Categoria categoriaAlterada) {
+		if(categoriaService.merge(categoriaAlterada)) {
 			return "Categoria alterada!";
 		}
 		return "Erro ao alterar Categoria!";
