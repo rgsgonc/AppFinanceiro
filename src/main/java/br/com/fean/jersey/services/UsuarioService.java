@@ -23,9 +23,9 @@ public class UsuarioService {
 		usuarioDAO.closeCurrentSessionwithTransaction();
 	}
 
-	public Boolean merge (Usuario categoriaAlterada) {
+	public Boolean merge (Usuario usuarioAlterado) {
 		usuarioDAO.openCurrentSessionwithTransaction();
-		usuarioDAO.update(categoriaAlterada);
+		usuarioDAO.update(usuarioAlterado);
 		usuarioDAO.closeCurrentSessionwithTransaction();
 		
 		return true;
@@ -33,15 +33,15 @@ public class UsuarioService {
 	
 	public Usuario findById(Integer id) {
 		usuarioDAO.abrirSessaoAtual();
-		Usuario categoria = usuarioDAO.findById(id);
+		Usuario usuario = usuarioDAO.findById(id);
 		usuarioDAO.encerrarSessaoAtual();
-		return categoria;
+		return usuario;
 	}
 
 	public void delete(Integer id) {
 		usuarioDAO.openCurrentSessionwithTransaction();
-		Usuario categoria = usuarioDAO.findById(id);
-		usuarioDAO.delete(categoria);
+		Usuario usuario = usuarioDAO.findById(id);
+		usuarioDAO.delete(usuario);
 		usuarioDAO.closeCurrentSessionwithTransaction();
 	}
 

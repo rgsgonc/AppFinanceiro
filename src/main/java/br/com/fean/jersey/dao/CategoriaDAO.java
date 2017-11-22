@@ -69,8 +69,8 @@ public class CategoriaDAO implements GenericDAO<Categoria>{
          getCurrentSession().save(entity);
      }
   
-     public Boolean update(Categoria usuarioAlterado) {
-    	 getCurrentSession().update(usuarioAlterado);
+     public Boolean update(Categoria categoriaAlterada) {
+    	 getCurrentSession().update(categoriaAlterada);
     	 return true;
      }
 	

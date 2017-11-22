@@ -1,5 +1,7 @@
 package br.com.fean.jersey.controller;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -53,6 +55,13 @@ public class UsuarioController {
 	public String deletarUsuario(@PathParam("idUser") Integer idUser) {
 		usuarioService.delete(idUser);
 		return "Usuario excluido!";
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/list")
+	public List<Usuario> listarUsuario(){
+		return usuarioService.findAll();
 	}
 	
 }
