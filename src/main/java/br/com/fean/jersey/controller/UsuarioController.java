@@ -42,12 +42,13 @@ public class UsuarioController {
 
 	@PUT
 	@Path("/update")
+	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String editarUsuario(Usuario usuario) {
+	public Usuario editarUsuario(Usuario usuario) {
 		if (usuarioService.merge(usuario)) {
-			return "Usuario alterado!";
+			return usuario;
 		}
-		return "Erro ao alterar usuario!";
+		return usuario;
 	}
 	
 	@DELETE
