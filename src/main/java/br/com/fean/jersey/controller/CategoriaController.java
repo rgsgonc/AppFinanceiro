@@ -40,12 +40,13 @@ public class CategoriaController {
 	
 	@PUT
 	@Path("/update")
+	@Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-	public String editarCategoria(Categoria categoriaAlterada) {
+	public Categoria editarCategoria(Categoria categoriaAlterada) {
 		if(categoriaService.merge(categoriaAlterada)) {
-			return "Categoria alterada!";
+			return categoriaAlterada;
 		}
-		return "Erro ao alterar Categoria!";
+		return categoriaAlterada;
 	}
 	
 	@DELETE
