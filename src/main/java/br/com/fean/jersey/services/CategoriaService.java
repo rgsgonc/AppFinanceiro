@@ -30,16 +30,16 @@ public class CategoriaService {
 		return true;
 	}
 	
-	public Categoria findById(Integer id) {
+	public Categoria findById(Integer idCategoria) {
 		categoriaDAO.abrirSessaoAtual();
-		Categoria categoria = categoriaDAO.findById(id);
+		Categoria categoria = categoriaDAO.findById(idCategoria);
 		categoriaDAO.encerrarSessaoAtual();
 		return categoria;
 	}
 
-	public void delete(Integer id) {
+	public void delete(Integer idCategoria) {
 		categoriaDAO.openCurrentSessionwithTransaction();
-		Categoria categoria = categoriaDAO.findById(id);
+		Categoria categoria = categoriaDAO.findById(idCategoria);
 		categoriaDAO.delete(categoria);
 		categoriaDAO.closeCurrentSessionwithTransaction();
 	}

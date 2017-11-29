@@ -50,6 +50,7 @@ public class CategoriaController {
 	}
 	
 	@DELETE
+	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/delete/{idCategoria}")
 	public String deletarCategoria(@PathParam("idCategoria") Integer idCategoria) {
 		categoriaService.delete(idCategoria);
