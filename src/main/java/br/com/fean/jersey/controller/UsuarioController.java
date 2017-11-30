@@ -52,9 +52,9 @@ public class UsuarioController {
 	}
 	
 	@DELETE
-	@Path("/delete/{idUser}")
-	public String deletarUsuario(@PathParam("idUser") Integer idUser) {
-		usuarioService.delete(idUser);
+	@Path("/delete/{idUsuario}")
+	public String deletarUsuario(@PathParam("idUsuario") Integer idUsuario) {
+		usuarioService.delete(idUsuario);
 		return "Usuario excluido!";
 	}
 	
